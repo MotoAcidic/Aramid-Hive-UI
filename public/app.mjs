@@ -1,6 +1,6 @@
 // Set your domain url here for the frontend
 // For some reason i am not able to import from the config file so define frontend url here for now.
-const url = "https://aramid.smalltimedevs.com/Aramid-Hive-Engine"
+const url = "https://api.smalltimedevs.com/ai/hive-engine"
 
 // Ensure code runs after the DOM is fully loaded
 window.addEventListener('DOMContentLoaded', () => {
