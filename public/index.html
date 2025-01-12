@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Platform</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Include Highlight.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="path/to/favicon.ico">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="path/to/logo.png" alt="Logo" />
+        </div>
+        <nav>
+            <a href="#" class="active">🏠</a>
+            <a href="#">📂</a>
+            <a href="#">🔒</a>
+            <a href="#">⚙️</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Top Navigation Bar -->
+        <header class="top-bar">
+            <h1>Agent Platform</h1>
+            <div class="actions">
+                <a href="#">Pricing</a>
+                <a href="#">Get demo</a>
+                <a href="#">Docs</a>
+            </div>
+        </header>
+
+        <!-- Left Section: Task Description and Summary -->
+        <div class="left-section">
+            <!-- Task Description Section -->
+            <div class="card task">
+                <h2>Task Description</h2>
+                <textarea id="prompt" placeholder="Enter your task or question..."></textarea>
+                <div class="button-group">
+                    <button onclick="generateText()">Generate</button>
+                    <button onclick="continueText()">Continue</button>
+                    <button onclick="researchAndSummarize()">Research</button>
+                    <button onclick="agentChat()">Agent Chat</button>
+                </div>
+            </div>
+
+            <!-- Summary Section -->
+            <div class="card summary">
+                <h2>Summary</h2>
+                <div id="summary-box" class="response-box">
+                    <p>The summary will appear here...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Section: Agent Responses -->
+        <div class="right-section">
+            <div class="card results">
+                <h2>Agent Responses</h2>
+                <div id="agent-responses" class="agent-response-box">
+                    <p>Agent responses will appear here...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Marked.js for Markdown Rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="app.mjs" defer></script>
+</body>
+</html>

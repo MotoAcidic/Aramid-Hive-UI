@@ -1,0 +1,218 @@
+/* General Reset */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #141414;
+    color: #eaeaea;
+    display: flex;
+    height: 100vh;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 60px;
+    height: 100vh;
+    background-color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    position: fixed;
+    transition: width 0.3s;
+    overflow: hidden;
+  }
+  
+  .sidebar.expanded {
+    width: 200px;
+  }
+  
+  .sidebar .logo {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .sidebar .logo img {
+    width: 40px;
+    height: 40px;
+    transition: all 0.3s;
+  }
+  
+  .sidebar.expanded .logo img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .sidebar nav a {
+    display: block;
+    margin: 15px 0;
+    font-size: 1.5rem;
+    color: #aaa;
+    text-align: center;
+    width: 100%;
+    transition: all 0.3s;
+  }
+  
+  .sidebar nav a.active,
+  .sidebar nav a:hover {
+    color: #ff3b3b;
+  }
+  
+  /* Main Container Layout */
+  .main-container {
+    margin-left: 60px; /* Leave space for the sidebar */
+    margin-top: 80px; /* Leave space for the top bar */
+    width: calc(100% - 60px); /* Adjust for sidebar width */
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    height: calc(100vh - 80px); /* Adjust for top bar height */
+    box-sizing: border-box;
+  }
+  
+  
+  /* Top Navigation Bar */
+  .top-bar {
+    position: fixed; /* Fix the top bar at the top */
+    top: 0;
+    left: 0;
+    width: 100%; /* Make it span the entire width */
+    background-color: #1a1a1a; /* Match the sidebar color */
+    z-index: 10; /* Ensure it stays above other elements */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #333;
+    box-sizing: border-box;
+  }
+  
+  .top-bar h1 {
+    font-size: 1.8rem;
+    color: #fff;
+  }
+  
+  .top-bar .actions a {
+    margin-left: 15px;
+    font-size: 0.9rem;
+    color: #ff3b3b;
+  }
+  
+  .top-bar .actions a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Left Section */
+  .left-section {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Right Section */
+  .right-section {
+    width: 60%;
+  }
+  
+  /* Card Layout */
+  .card {
+    background-color: #1e1e1e;
+    border: 1px solid #ff3b3b;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .card h2 {
+    color: #ff3b3b;
+  }
+  
+  /* Textarea Styling */
+  textarea {
+    width: 100%;
+    height: 100px;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    resize: none;
+    box-sizing: border-box;
+  }
+  
+  textarea:focus {
+    outline: 1px solid #ff3b3b;
+  }
+  
+  /* Button Group */
+  .button-group {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .button-group button {
+    flex: 1;
+    padding: 10px;
+    background-color: #ff3b3b;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .button-group button:hover {
+    background-color: #e63535;
+  }
+  
+  /* Agent Response Box */
+  .agent-response-box {
+    padding: 10px;
+    background-color: #2a2a2a;
+    border-radius: 5px;
+    overflow-y: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .agent-response-box .agent-section {
+    border: 1px solid #444;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #1e1e1e;
+  }
+  
+  .agent-response-box .agent-section h3 {
+    margin: 0 0 10px;
+    color: #ff3b3b;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  /* Summary Section */
+  .summary {
+    flex: 0 0 auto;
+  }
+  
+  .response-box {
+    padding: 10px;
+    background-color: #2a2a2a;
+    border-radius: 5px;
+    border: 1px solid #444;
+    color: #ddd;
+    overflow-y: auto;
+    max-height: 200px; /* Limit height for scrolling */
+    white-space: pre-wrap;
+  }
+  
