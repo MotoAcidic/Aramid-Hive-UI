@@ -5,7 +5,6 @@ const url = "https://api.smalltimedevs.com/ai/hive-engine"
 // Ensure code runs after the DOM is fully loaded
 window.addEventListener('DOMContentLoaded', () => {
     console.log('DOM fully loaded and parsed');
-    loadBackgroundOptions();
 });
 
 // Helper function to render Markdown with syntax highlighting
@@ -18,36 +17,17 @@ function renderMarkdown(text) {
     return html;
 }
 
-// Load background options from skybox.json and populate the dropdown
-async function loadBackgroundOptions() {
-    const backgroundSelect = document.getElementById('background-select');
-    const iframe = document.getElementById('background-iframe');
-
-    try {
-        const response = await fetch('/skyboxBackgrounds/skybox.json');
-        if (!response.ok) {
-            throw new Error(`Failed to fetch backgrounds: ${response.statusText} (${response.status})`);
-        }
-
-        const backgrounds = await response.json();
-        console.log('Background options loaded:', backgrounds);
-
-        // Populate dropdown with background options
-        backgrounds.forEach((background, index) => {
-            const option = document.createElement('option');
-            option.value = background.url;
-            option.textContent = background.name;
-            backgroundSelect.appendChild(option);
-
-            // Set the first background as default
-            if (index === 0) {
-                backgroundSelect.value = background.url;
-                iframe.src = background.url;
-            }
-        });
-    } catch (error) {
-        console.error('Error loading backgrounds:', error.message || error);
-    }
+// Helper function to fetch with timeout
+async function fetchWithTimeout(resource, options = {}) {
+    const { timeout = 10000 } = options; // Set default timeout to 10 seconds
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), timeout);
+    const response = await fetch(resource, {
+        ...options,
+        signal: controller.signal,
+    });
+    clearTimeout(id);
+    return response;
 }
 
 // Generate AI text and save it as a conversation
@@ -57,10 +37,11 @@ async function generateText() {
     responseDiv.innerText = "Generating...";
 
     try {
-        const response = await fetch(`${url}/generate`, {
+        const response = await fetchWithTimeout(`${url}/generate`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ prompt: prompt }),
+            timeout: 20000, // 20 seconds timeout
         });
 
         if (!response.ok) {
@@ -89,10 +70,11 @@ async function continueText() {
     const prompt = `${currentText}\n\nPlease elaborate further and provide additional insights.`;
 
     try {
-        const response = await fetch(`${url}/generate`, {
+        const response = await fetchWithTimeout(`${url}/generate`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ prompt: prompt }),
+            timeout: 20000, // 20 seconds timeout
         });
 
         if (!response.ok) {
@@ -115,10 +97,11 @@ async function executeCommand() {
     responseDiv.innerText = "Executing command...";
 
     try {
-        const response = await fetch(`${url}/execute-command`, {
+        const response = await fetchWithTimeout(`${url}/execute-command`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ command: commandInput }),
+            timeout: 20000, // 20 seconds timeout
         });
 
         if (!response.ok) {
@@ -141,10 +124,11 @@ async function researchAndSummarize() {
     responseDiv.innerText = "Researching and summarizing...";
 
     try {
-        const response = await fetch(`${url}/research-and-summarize`, {
+        const response = await fetchWithTimeout(`${url}/research-and-summarize`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ query: query }),
+            timeout: 20000, // 20 seconds timeout
         });
 
         if (!response.ok) {
@@ -174,10 +158,11 @@ async function agentChat() {
         agentResponsesDiv.innerHTML = "Processing...";
         summaryBoxDiv.innerHTML = "";
 
-        const response = await fetch(`${url}/agent-chat`, {
+        const response = await fetchWithTimeout(`${url}/agent-chat`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ query: prompt }),
+            timeout: 820000, // 820 seconds timeout
         });
 
         if (!response.ok) {
